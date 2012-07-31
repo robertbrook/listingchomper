@@ -1,4 +1,6 @@
+require 'yaml'
+
 listingfile = File.new("listing.txt")
 listinglines = listingfile.readlines
 
-p listinglines
+lines_to_ignore = listinglines[0..3]
