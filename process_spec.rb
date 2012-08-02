@@ -1,7 +1,11 @@
 require 'process'
 
 describe Process do
-  it "should open the local listing file"
+
+  context "with a local listing.txt file" do
+    it "should open the file" 
+  end
+
   
   it "should check section contiguity"
   
