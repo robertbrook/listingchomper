@@ -24,12 +24,24 @@ describe Process do
   # IF NOT, delete anomalous timecodes.
   
   it "should delete anomalous timecodes"
+  # If timecodes are not sequential, we need to understand in what way. In the sequence [1 2 4 3] the number 4 is out of sequence. The simplest thing is simply to delete it.
+  # Most anomalies in timecodes will be more complex than the above example, eg. [1 2 3 10 5 4 6 7 9 8]
+  # Removing anomalous timecodes leaves us with [1 2 3 5 6 7 8]
+  # Each section will generally average about 15-25 minutes of copy, so the scope of error being introduced here is limited. If that all looks fine, queue for processing.
+  # If not, another form of sequencing anomaly looks like this: [1 1 1 1] etc.
+  # ie. all the timecodes in a Section are identical. In this case, we can recover some data by deleting all the timecodes and repurposing the <hs_time> tag (repurpose timetags). Not perfect, but better than nothing.
+
   
   it "should rerender timecodes"
+  # If an .xml file contains no timecodes at all, check whether there are timecodes in the corresponding .doc file.
+  # If the .doc file contains timecodes (in the form of Word Comments), rerender the .xml file from it, including the timecodes, and then run that through the sequencing test above.
   
   it "should repurpose timetags"
+  # If the .doc file does not contain timecodes, we have no data to recover and must resort to repurposing the <hs_time> tag. Where have the tag <hs_time>3.14 pm</hs_time> we can add the timecode <hs_TimeCode time="[datefromdirectory]T15:14:00" /> where datefromdirectory will look like, eg, 2010-06-02.
   
   it "should queue for processing"
+  # Something clever will presumably happen at this point.
+
   
 end
 
