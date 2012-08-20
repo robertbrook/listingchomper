@@ -17,7 +17,7 @@ describe Process do
   end
 
 
-  context "for each file of interest" do
+  context "for each (.xml) file of interest" do
     it "should check for timecodes"
     # Check each remaining file for timecodes, indicated by the tag <hs_TimeCode time="dateTime" /> where dateTime looks something like: <hs_TimeCode time="2010-06-02T15:14:31" />
     # IF there are timecodes, check for timecode anomalies. IF NOT, rerender timecodes.
