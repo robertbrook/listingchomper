@@ -42,6 +42,13 @@ describe Process do
   
     it "should repurpose timetags"
     # If the .doc file does not contain timecodes, we have no data to recover and must resort to repurposing the <hs_time> tag. Where have the tag <hs_time>3.14 pm</hs_time> we can add the timecode <hs_TimeCode time="[datefromdirectory]T15:14:00" /> where datefromdirectory will look like, eg, 2010-06-02.
+
+    it "should write to a log file"
+    #should include all the deleted timecodes
+    #should report that the timecodes were re-rendered
+    #should report any repurposing of the hs_time tag
+    #should report a complete failure to find/create timecodes
+    #should report that a file was queued for processing
   
     it "should queue for processing"
     # Something clever will presumably happen at this point.
