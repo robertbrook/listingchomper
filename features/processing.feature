@@ -1,15 +1,23 @@
 Feature: Processing
 
-        Scenario: Opening the local noverlisting.txt file
-                Given the input noverlisting.txt
+        Scenario: Opening the local listing.txt file
+                Given the input listing.txt
                 When the file is processed
                 Then the file should be present
+
+        Scenario: Opening the local listing.txt file
+                Given the input listing.txt
+                When asked to isolate a single day's worth of data
+                Then the single day's worth of data should be returned
+                    # Also consider the listing file could only contain one day's worth of data?
+
 
         Scenario: Checking section contiguity
                 Given a sent folder which does not contain a contiguous set of xml documents
                 When the file is processed
                 Then the folder should be disregarded
                 
+    # Disregard any Sent folders which do not contain a contiguous set of xml documents
 
   # We can check contiguity by polling Sent\files.txt (or files.htm) if that's easier than scanning each folder, although the filelisting in those files is chronological (by production time) rather than alphabetical.
   
@@ -22,14 +30,17 @@ Feature: Processing
 
         
         Scenario: Checking for timecodes
-                Given an anomalous timecode
-                When the file is processed
-                Then the anomalous timecode should be ignored
+                Given a candidate XML file
+                When a timecode is found
+                Then the timecode should be processed
                 
                  # Check each remaining file for timecodes, indicated by the tag <hs_TimeCode time="dateTime" /> where dateTime looks something like: <hs_TimeCode time="2010-06-02T15:14:31" />
   # IF there are timecodes, check for timecode anomalies. IF NOT, rerender timecodes.
         
         Scenario: Checking for timecode anomalies
+                Given a candidate XML file
+                When an anomalous timecode is found
+                Then the anomalous timecode should be deleted
         
          # Check that timecodes are sequential.
   # IF they are sequential, job done, queue up that file for subsequent processing or whatever it is we're going to do: queue for processing.
@@ -51,6 +62,16 @@ Feature: Processing
         
         Scenario: Repurposing timetags
           # If the .doc file does not contain timecodes, we have no data to recover and must resort to repurposing the <hs_time> tag. Where have the tag <hs_time>3.14 pm</hs_time> we can add the timecode <hs_TimeCode time="[datefromdirectory]T15:14:00" /> where datefromdirectory will look like, eg, 2010-06-02.
+
+        Scenario: Writing log files
+                Given a processing run
+                When the process is running
+                Then the log should be written
+                    #should include all the deleted timecodes
+    #should report that the timecodes were re-rendered
+    #should report any repurposing of the hs_time tag
+    #should report a complete failure to find/create timecodes
+    #should report that a file was queued for processing
 
         
         Scenario: Queueing for processing
