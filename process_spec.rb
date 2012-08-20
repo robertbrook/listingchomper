@@ -4,6 +4,9 @@ describe Process do
 
   context "with a local listing.txt file" do
     it "should open the file" 
+    
+    it "should isolate a single day's worth of data"
+    # Also consider the listing file could only contain one day's worth of data?
   end
 
   
