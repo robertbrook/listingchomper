@@ -1,4 +1,9 @@
 Feature: Individual File Processing
+	Iterate over each individual file to:
+		a) make sure it makes sense
+		b) attempt to fix it if it doesn't make sense
+		c) queue it for "further processing" if it all checks out
+
 	Scenario: The file contains TimeCode tags
 		Given a candidate XML file
 		When timecodes are found
@@ -12,7 +17,7 @@ Feature: Individual File Processing
 		
 			
 Feature: Timecode sanity checking
-	Check each remaining file for timecodes, indicated by the tag <hs_TimeCode time="dateTime" />
+	Check each file for timecodes, indicated by the tag <hs_TimeCode time="dateTime" />
 	where dateTime looks something like: <hs_TimeCode time="2010-06-02T15:14:31" />
 		
 	Scenario: Non-sequential timecodes
@@ -44,10 +49,7 @@ Feature: Timecode sanity checking
 		Given a candidate XML file
 		When sequential timecodes are found
 		Then the file should be queued for further processing
-
-	Scenario: Queueing for processing
-		# Something clever will presumably happen at this point.
-
+		
 		
 Feature: Timecode Regeneration
 	"Regenerating" the xml file with properly formatted - and hopefully sequenced - timecodes
@@ -73,7 +75,7 @@ Feature: Timecode Regeneration
 		And the output file should be queued for sanity checking
 
 
-Feature: Repurposing timetags
+Feature: Timetag Repurposing
 	If the .doc file does not contain timecodes, we have no data to recover and must resort 
 	to repurposing the <hs_time> tag. Where have the tag <hs_time>3.14 pm</hs_time> 
 	we can add the timecode <hs_TimeCode time="[datefromdirectory]T15:14:00" /> where 
@@ -91,3 +93,7 @@ Feature: Repurposing timetags
 		When the repurposing process runs
 		Then an error should be written to the log file
 		And the process should move on to the next file
+		
+
+Feature: Processing
+	Something clever will presumably happen at this point.
