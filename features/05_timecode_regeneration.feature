@@ -1,5 +1,5 @@
-
 Feature: Timecode Regeneration
+
 	"Regenerating" the xml file with properly formatted - and hopefully sequenced - timecodes
 	 from the Word Comments in the matching .doc file
 

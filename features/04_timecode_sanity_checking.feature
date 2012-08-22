@@ -1,5 +1,5 @@
-			
 Feature: Timecode sanity checking
+
 	Check each file for timecodes, indicated by the tag <hs_TimeCode time="dateTime" />
 	where dateTime looks something like: <hs_TimeCode time="2010-06-02T15:14:31" />
 		

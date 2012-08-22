@@ -1,5 +1,5 @@
-
 Feature: Timetag Repurposing
+
 	If the .doc file does not contain timecodes, we have no data to recover and must resort 
 	to repurposing the <hs_time> tag. Where have the tag <hs_time>3.14 pm</hs_time> 
 	we can add the timecode <hs_TimeCode time="[datefromdirectory]T15:14:00" /> where 

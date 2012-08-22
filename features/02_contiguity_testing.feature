@@ -1,4 +1,5 @@
 Feature: Contiguity Testing
+
 	Make sure the day's file set makes sense before trying to process the individual files
 
 	Scenario: Non-contiguous file set
