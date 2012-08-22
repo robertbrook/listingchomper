@@ -9,15 +9,21 @@ Feature: Processing
                 Given the input listing.txt
                 When asked to isolate a single day's worth of data
                 Then the single day's worth of data should be returned
-                    # Also consider the listing file could only contain one day's worth of data?
 
+        Scenario: Opening the local listing.txt file 
+                Given the input listing.txt
+                When the listing.txt file contains only one day
+                Then that day's worth of data should be returned
 
         Scenario: Checking section contiguity
                 Given a sent folder which does not contain a contiguous set of xml documents
                 When the file is processed
                 Then the folder should be disregarded
-                
-    # Disregard any Sent folders which do not contain a contiguous set of xml documents
+
+        Scenario: Opening the listing.txt file
+                Given the input listing.txt
+                When a Sent folder does not contain a contiguous set of xml documents
+                Then ignore that Sent folder
 
   # We can check contiguity by polling Sent\files.txt (or files.htm) if that's easier than scanning each folder, although the filelisting in those files is chronological (by production time) rather than alphabetical.
   
