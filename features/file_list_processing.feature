@@ -1,5 +1,5 @@
 Feature: File List Processing
-	The main process loop - everything starts from here
+	# The main process loop - everything starts from here
 	
 	Scenario: Input file missing
 		Given the input path "missing-listing.txt"
