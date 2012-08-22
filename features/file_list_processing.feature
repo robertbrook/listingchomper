@@ -1,5 +1,5 @@
 Feature: File List Processing
-	# The main process loop - everything starts from here
+	The main process loop - everything starts from here
 	
 	Scenario: Input file missing
 		Given the input path "missing-listing.txt"
@@ -16,7 +16,7 @@ Feature: File List Processing
 
 
 Feature: Contiguity Testing
-	# Make sure the day's file set makes sense before trying to process the individual files
+	Make sure the day's file set makes sense before trying to process the individual files
 
 	Scenario: Non-contiguous file set
 		Given "[datefromdirectory]_for_processing.txt" contains a non-contiguous list of xml documents
